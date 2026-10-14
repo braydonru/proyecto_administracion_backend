@@ -13,7 +13,7 @@ def get_stores(db:SessionDep, u:Annotated[str,Depends(require_role('SuperAdmin')
     return stores
 
 @store_router.get('/get_by_owner')
-def get_store_by_owner(db:SessionDep,  u:Annotated[str,Depends(require_role('Admin'))]):
+def get_store_by_owner(db:SessionDep,  u:Annotated[str,Depends(require_role(['Admin','SuperAdmin']))]):
     statement= select(Store).filter(Store.owner==u['id'])
     store = db.exec(statement).all()
     return store
