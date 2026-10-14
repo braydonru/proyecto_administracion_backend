@@ -19,4 +19,7 @@ app.add_middleware(
     expose_headers=["*"]
 )
 
+@app.get('/')
+def hola():
+    return 'Hola Maria Karlita'
 app.include_router(router)
